@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 20px; 
+      background-color: #2e2e3e;
+      color: #d0e0e0;
+    }
+
+    .content {
+      margin: 10px; 
+    }
+
+    .task { 
+      display: flex; 
+      justify-content: space-between; 
+      margin-bottom: 5px; 
+      padding: 5px 7px;
+      background-color: #4e4e6e;
+      color: #f0e0e0;
+      border: 1px solid;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-left: 10px; 
+    }
+
+  </style>
+</head>
+<body>
+  <h1>My To-Do List</h1>
+  <div class="content">
+    <input id="taskInput" type="text" placeholder="Enter a new task" />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+  <div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById("taskInput");
+      const task = taskInput.value.trim();
+      if (task === "") return;
+
+      const taskList = document.getElementById("taskList");
+      const li = document.createElement("li");
+      li.className = "task";
+      li.innerHTML = `${task} <button onclick="removeTask(this)">Delete</button>`;
+      taskList.appendChild(li);
+      
+      taskInput.value = ""; // Clear input field
+    }
+
+    function removeTask(button) {
+      const task = button.parentElement;
+      task.remove(); // Remove task from list
+    }
+  </script>
+</body>
+</html>
+
